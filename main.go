@@ -17,6 +17,10 @@ import (
 func main() {
 	r := gin.Default()
 
+	r.GET("/api", func(ctx *gin.Context) {
+		fmt.Println(os.Getenv("TAG"))
+	})
+
 	srv := &http.Server{
 		Addr:    ":" + os.Getenv("PORT"),
 		Handler: r,

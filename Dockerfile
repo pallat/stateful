@@ -26,7 +26,8 @@ LABEL version="X.Y.Z"
 
 COPY --from=build /app/api .
 
-EXPOSE 8080
+ENV PORT 8910
+EXPOSE 8910
 
 # ENTRYPOINT ["./tini", "--"]
 

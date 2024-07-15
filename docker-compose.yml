@@ -3,7 +3,7 @@ services:
   redis:
     restart: always
     image: "redis:latest"
-    container_name: incubator-redis
+    container_name: stateful-redis
     ports:
       - "6379:6379"
   redisinsight:
@@ -11,3 +11,29 @@ services:
     ports:
       - "8001:8001"
 
+  backend_1:
+    build: .
+    container_name: backend-1
+    environment:
+      - PORT=8910
+      - TAG=1
+  backend_2:
+    build: .
+    container_name: backend-2
+    environment:
+      - PORT=8910
+      - TAG=2
+  backend_3:
+    build: .
+    container_name: backend-3
+    environment:
+      - PORT=8910
+      - TAG=3
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend_1
+      - backend_2
+      - backend_3
