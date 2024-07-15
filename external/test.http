@@ -1,0 +1,11 @@
+GET http://localhost:8765/token/arise
+
+###
+
+POST http://localhost:8765/token/verifies
+Content-Type: application/json
+
+{
+    "system": "arise",
+    "token": "9142fda4-2c25-4cc3-b0c1-f7bca4ef7797"
+}
